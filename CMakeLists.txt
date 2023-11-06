@@ -1,6 +1,12 @@
-cmake_minimum_required(VERSION 2.8)
-project(libcaption)
-set(CMAKE_C_FLAGS "-Wall -O3 ${CMAKE_C_FLAGS}")
+cmake_minimum_required(VERSION 3.5)
+project(libcaption C)
+
+set(CMAKE_C_FLAGS "-Wall ${CMAKE_C_FLAGS}")
+
+message(STATUS "Project:    ${PROJECT_NAME}")
+message(STATUS "Platform:   ${CMAKE_SYSTEM_NAME} (${CMAKE_SYSTEM})")
+message(STATUS "Build Type: ${CMAKE_BUILD_TYPE}")
+
 add_definitions(-D__STDC_CONSTANT_MACROS)
 if (WIN32)
   add_definitions(-D_CRT_SECURE_NO_WARNINGS)
@@ -79,9 +85,7 @@ if(ENABLE_RE2C)
   add_dependencies(caption re2c)
 endif()
 
-if(CMAKE_VERSION VERSION_EQUAL 2.8.12 OR CMAKE_VERSION VERSION_GREATER 2.8.12)
 target_include_directories(caption PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-endif()
 
 option(BUILD_EXAMPLES "Build examples" ON)
 if(BUILD_EXAMPLES)

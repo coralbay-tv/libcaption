@@ -99,8 +99,11 @@ endif()
 #add_executable(test_captions unit_tests/test_sei.c )
 #target_link_libraries(test_captions caption)
 
-add_executable(test_wrap unit_tests/test_wrap.c )
-target_link_libraries(test_wrap caption)
+option(BUILD_TESTS "Build unit tests" ON)
+if(BUILD_TESTS)
+  add_executable(test_wrap unit_tests/test_wrap.c )
+  target_link_libraries(test_wrap caption)
+endif()
 
 install (TARGETS caption DESTINATION lib EXPORT caption-targets)
 install (FILES ${CAPTION_HEADERS} DESTINATION include/caption)
